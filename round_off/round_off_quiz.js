@@ -27,7 +27,7 @@ var score = 0;
 let index;
 const speed = 50; // Speed in milliseconds
 var question;
-const fullScore = 3;
+const fullScore = 10;
 
 document.getElementById("scoreBoard").innerHTML = "Score: 0 / " + fullScore.toString();
 
