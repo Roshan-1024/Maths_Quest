@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="level_selection_page.css">
+    <link rel="icon" type="image/x-icon" href="../Images/website_logo.jpeg">
+    <title>Quizzopia</title>
+  </head>
+  <body>
+    <img src="../Images/home_button.png" id="home_button" onclick="homeButton()">
+    <img src="../Images/character.png" id="character" onclick="openSelectedLevel()">
+
+    <div id="titleBar">Roman Numerals</div>
+
+    <div id="levelsBaseDiv">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+      <img src="../Images/unfinished_level_base.png" class="levelsBase" onclick="userClicks(this)">
+    </div>
+
+    <div id="levelsNumberDiv">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+      <img src="../Images/unfinished_level_number.png" class="levelsNumber" onclick = "userClicks(this)">
+    </div>
+
+    <div id="numbers">
+      <span class="numbers" onclick = "userClicks(this)">1</span>
+      <span class="numbers" onclick = "userClicks(this)">2</span>
+      <span class="numbers" onclick = "userClicks(this)">3</span>
+      <span class="numbers" onclick = "userClicks(this)">4</span>
+      <span class="numbers" onclick = "userClicks(this)">5</span>
+      <span class="numbers" onclick = "userClicks(this)">6</span>
+    </div>
+    <audio src="../Music/click.wav" id="click_audio"></audio>
+    <script src="level_selection_page.js" charset="utf-8"></script>
+  </body>
+</html>

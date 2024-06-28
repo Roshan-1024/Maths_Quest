@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Quizzopia</title>
+    <link rel="stylesheet" href="roman_numerals_quiz.css">
+    <link rel="icon" type="image/x-icon" href="../Images/website_logo.jpeg">
+  </head>
+  <body>
+    <img src="../Images/back_button.png" id="back_button" onclick = "backButton()">
+    <img src="../Images/3_hearts.png" id="hearts">
+    <div id = "scoreBoard"></div>
+
+    <img src="../Images/front_page_anwesha.jpeg" id="anweshaPhoto">
+    <div id = "quiz_container"></div>
+    <div id="gif_container"></div>
+
+    <div id="game_over_cover_screen">
+      <div id="container">
+        <img src="../Images/game_over_glitch.gif" id="game_over_gif">
+        <button type="button" class="game_over_buttons" id="retry_button" onclick="gameOverRetryButton()">Retry</button>
+        <button type="button" class="game_over_buttons" id="back_button" onclick="gameOverBackButton()">Back</button>
+      </div>
+
+    </div>
+    <audio src="../Music/game_over.mp3" id="game_over_audio"></audio>
+    <audio src="../Music/mockery.wav" id="mockery_audio"></audio>
+    <audio src="../Music/yay.mp3" id="yay_audio"></audio>
+    <audio src="../Music/game_won.mp3" id="game_won_audio"></audio>
+    <script src="roman_numerals_quiz.js" charset="utf-8"></script>
+  </body>
+</html>
