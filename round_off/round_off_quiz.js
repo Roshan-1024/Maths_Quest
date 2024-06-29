@@ -27,8 +27,7 @@ var score = 0;
 let index;
 const speed = 50; // Speed in milliseconds
 var question;
-const fullScore = 10;
-
+const fullScore = 15;
 document.getElementById("scoreBoard").innerHTML = "Score: 0 / " + fullScore.toString();
 
 function displayQuestion(){
@@ -83,21 +82,30 @@ function displayQuestion(){
         event.preventDefault();
         // Call the desired function
         if(index == question.length && answerField.value.trim() !== ""){
+          //Saving user data for continue button
+          localStorage.setItem("Roman_Numerals_Score", score);
+          var text = document.getElementsByClassName("answerField")[question_number-1].value;
+          localStorage.setItem(`Roman_Numerals_question_${question_number}_value`, text);
+
+          //checking if the input value is correct or incorrect:
           if(answerField.value.trim().toUpperCase() === correctAnswer.toString()){
             console.log("Correct");
             score++;
+            
             if(score == fullScore){
               // Play the sound effect
               const soundEffect = document.getElementById('game_won_audio');
               soundEffect.play().catch(error => {
                 console.error('Error playing the sound:', error);
               });
-              // Remove the GIF and stop the sound after 3 seconds
-              setTimeout(() => {
-                gif_elem.style.display = 'none';
-                soundEffect.pause();
-                soundEffect.currentTime = 0; // Reset the audio
-              }, 3000); // 3000 milliseconds = 3 seconds
+              if (score != fullScore) {
+                // Remove the GIF and stop the sound after 3 seconds
+                setTimeout(() => {
+                  gif_elem.style.display = 'none';
+                  soundEffect.pause();
+                  soundEffect.currentTime = 0; // Reset the audio
+                }, 3000); // 3000 milliseconds = 3 seconds
+              }
               document.getElementById("scoreBoard").innerHTML = "Score: " + score.toString() + " / " + fullScore.toString();
               answerField.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.6), 0 0 60px rgba(0, 255, 0, 0.4), 0 0 80px rgba(0, 255, 0, 0.2)";
               document.getElementById("anweshaPhoto").style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2)";
@@ -148,7 +156,6 @@ function generateQuestion(){
   let min = 1;
   let max = 3;
   let choice = Math.floor(Math.random() * (max - min + 1) + min);
-  choice =3 ;
 
   switch(choice){
     case 1:
@@ -223,7 +230,9 @@ function generateQuestion(){
   }
 
 }
-
+document.addEventListener("DOMContentLoaded", function() {
+  displayQuestion();
+});
 
 //Mocking on losing
 function showGifAndPlaySoundOnIncorrectAns() {
@@ -276,9 +285,3 @@ function showGifAndPlaySoundOnCorrectAns() {
   }, 2000); // 3000 milliseconds = 3 seconds
 }
 
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  displayQuestion();
-});
