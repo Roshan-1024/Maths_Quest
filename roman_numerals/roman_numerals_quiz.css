@@ -130,7 +130,17 @@ img#back_button{
   top: 15px;
   left: 15px;
 }
+img#save_button{
+  width: 70px;
+  height: 70px;
+  position:absolute;
+  top: 15px;
+  left: 100px;
+}
 
+img#save_button:hover{
+  cursor: pointer;
+}
 img#back_button:hover{
   cursor: pointer;
 }

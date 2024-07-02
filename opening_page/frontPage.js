@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function openLevelSelectionPage() {
-    var url = "../level_selection_page/level_selection_page.html"; // Replace with your desired URL
+    var username = prompt("What is your name?");
+    while(!username){
+        username = prompt("Please, enter your name to proceed.");
+    }
+    var userKey = "User_" + username;   //User_Roshan will be used to load game progress.
+    localStorage.setItem(userKey, JSON.stringify({ username: username }));
+    localStorage.setItem("Recent User", username);
+    
+    var url = "../level_selection_page/level_selection_page.html";
     window.open(url, '_self');
 }

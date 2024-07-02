@@ -315,6 +315,32 @@ function backButton(){
   window.open(url, '_self');
 }
 
+//Saves game progress of associated user to local storage.
+function saveButton(){
+  //Do nothing if no data actually exists.
+  if(question_number == 0){
+    return;
+  }
+
+  var questionList = [], answerList = [];
+  for (let index = 1; index < question_number; index++) {
+    questionList.push(document.getElementsByClassName("questionField")[index-1].innerHTML);
+    answerList.push(document.getElementsByClassName("answerField")[index-1].value);
+  }
+
+  var username = localStorage.getItem("Recent User");
+  let gameProgress = {
+    user: username,
+    page: "Roman Numerals",
+    "question Number": question_number-1,
+    "Question List": questionList,
+    "Answer List": answerList
+  }
+
+  
+  localStorage.setItem(username+"'s Game Progress", JSON.stringify(gameProgress));
+}
+
 function displayGameOver(){
   document.getElementById("game_over_cover_screen").style.display = "block";
   gameOverAudio();
