@@ -25,7 +25,7 @@ img#anweshaPhoto{
   display: block;
   position: fixed;
   top: 10px;
-  right: 10px;
+  right: 20px;
   width: 150px;
   height: 150px;
   border: 5px solid white;
@@ -47,12 +47,11 @@ div#quiz_container {
 div.questionAndAnswerContainer {
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
 }
 
 div.questionFolder {
   width: 100%; /* Adjust to full width */
-  width: 1000px; /* Optional max-width */
+  max-width: 800px; /* Optional max-width */
   height: 75px;
   font-size: 30px;
   font-weight: bold;
@@ -122,4 +121,67 @@ div#gif_container{
   position: fixed;
   bottom: 50px;
   right: 50px;
+}
+
+img#back_button{
+  width: 70px;
+  height: 70px;
+  position:absolute;
+  top: 15px;
+  left: 15px;
+}
+
+img#back_button:hover{
+  cursor: pointer;
+}
+
+img#hearts{
+  position: fixed;
+  right: 0%;
+  top: 25%;
+  height: 50px;
+  width: 200px;
+}
+
+div#game_over_cover_screen{
+  display: none;
+  position: fixed;
+  top:0;
+  left: 0;
+  height: 100%;
+  width:100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+div#container{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width: 329px;
+  height: 230px;
+}
+
+button.game_over_buttons{
+  width: 130px;
+  height: 60px;
+  border-radius: 25px;
+  font-family:cursive;
+  font-weight:bold;
+  font-size: 25px;
+  text-align: center;
+  background: tomato;
+  color: white;
+  border: none;
+}
+
+button#retry_button{
+  background: green;
+  margin-right: 65px;
+}
+
+button#back_button:hover, button#retry_button:hover{
+  cursor:pointer;
+  background: white;
+  color: black;
 }

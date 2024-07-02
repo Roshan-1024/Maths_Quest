@@ -32,6 +32,7 @@ var lives = 3;
 var gameOver = false; //currently no use...
 document.getElementById("scoreBoard").innerHTML = "Score: 0 / " + fullScore.toString();
 
+//displays question and checks if input is correct.
 function displayQuestion(){
   if(question_number == fullScore){
     gameOver = true;

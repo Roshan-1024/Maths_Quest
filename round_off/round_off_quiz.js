@@ -22,16 +22,25 @@
       .characterImg which is the image not a div
 */
 var correctAnswer = "";
-var question_number = 1;
+var question_number = 0;
 var score = 0;
 let index;
 const speed = 50; // Speed in milliseconds
 var question;
-const fullScore = 15;
+const fullScore = 30;
+var lives = 3;
+var gameOver = false; //currently no use...
 document.getElementById("scoreBoard").innerHTML = "Score: 0 / " + fullScore.toString();
 
+//displays question and checks if input is correct.
 function displayQuestion(){
-  if(question_number-1 == fullScore){
+  if(question_number == fullScore){
+    gameOver = true;
+    gameOverAudio();
+  }
+  question_number++;
+  if(gameOver){
+    question_number--;
     return;
   }
 
@@ -65,13 +74,7 @@ function displayQuestion(){
   answerField.className = "answerField";
   document.getElementsByClassName('answerFolder')[question_number-1].appendChild(answerField);
 
-
-  //Lock the input field after clicking Enter
-  if(question_number > 1){
-    document.getElementsByClassName("answerField")[question_number-2].disabled = true;
-  }
-
-  //keypress enter returns next question
+  //keypress enter shows next question
   const input = document.getElementsByClassName("answerField")[question_number - 1];
   if (input) { // Check if input exists
     // Add event listener for keypress
@@ -82,30 +85,21 @@ function displayQuestion(){
         event.preventDefault();
         // Call the desired function
         if(index == question.length && answerField.value.trim() !== ""){
-          //Saving user data for continue button
-          localStorage.setItem("Roman_Numerals_Score", score);
-          var text = document.getElementsByClassName("answerField")[question_number-1].value;
-          localStorage.setItem(`Roman_Numerals_question_${question_number}_value`, text);
-
-          //checking if the input value is correct or incorrect:
           if(answerField.value.trim().toUpperCase() === correctAnswer.toString()){
             console.log("Correct");
             score++;
-            
             if(score == fullScore){
               // Play the sound effect
               const soundEffect = document.getElementById('game_won_audio');
               soundEffect.play().catch(error => {
                 console.error('Error playing the sound:', error);
               });
-              if (score != fullScore) {
-                // Remove the GIF and stop the sound after 3 seconds
-                setTimeout(() => {
-                  gif_elem.style.display = 'none';
-                  soundEffect.pause();
-                  soundEffect.currentTime = 0; // Reset the audio
-                }, 3000); // 3000 milliseconds = 3 seconds
-              }
+              // Remove the GIF and stop the sound after 3 seconds
+              setTimeout(() => {
+                gif_elem.style.display = 'none';
+                soundEffect.pause();
+                soundEffect.currentTime = 0; // Reset the audio
+              }, 3000); // 3000 milliseconds = 3 seconds
               document.getElementById("scoreBoard").innerHTML = "Score: " + score.toString() + " / " + fullScore.toString();
               answerField.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.6), 0 0 60px rgba(0, 255, 0, 0.4), 0 0 80px rgba(0, 255, 0, 0.2)";
               document.getElementById("anweshaPhoto").style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2)";
@@ -118,13 +112,37 @@ function displayQuestion(){
           }
           else{
             console.log("Incorrect");
-            showGifAndPlaySoundOnIncorrectAns();
+            lives--;
+            if(lives == 2){
+              document.getElementById("hearts").src = "../Images/2_hearts.png";
+              document.getElementById("hearts").style.height = "70px";
+              document.getElementById("hearts").style.width = "230px";
+            }
+            else if(lives == 1){
+              document.getElementById("hearts").src = "../Images/1_heart.png";
+            }
+            else if(lives == 0){
+              document.getElementById("hearts").src = "../Images/0_heart.png";
+              gameOver = true;
+              displayGameOver();
+            }
             document.getElementById("anweshaPhoto").style.boxShadow = "0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6), 0 0 60px rgba(255, 0, 0, 0.4), 0 0 80px rgba(255, 0, 0, 0.2)";
             answerField.style.boxShadow = "0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6), 0 0 60px rgba(255, 0, 0, 0.4), 0 0 80px rgba(255, 0, 0, 0.2)";
+            if(lives != 0){
+              showGifAndPlaySoundOnIncorrectAns();
+            }
+            else{
+              gameOver = true;
+            }
           }
-          question_number++;
-          displayQuestion();
-          document.getElementsByClassName("answerField")[question_number-1].focus();
+          //Lock the input field after clicking Enter
+          document.getElementsByClassName("answerField")[question_number-1].disabled = true;
+          displayQuestion();  //to display the next question.
+          //when pressing enter the last time, don't focus on the next input field as it doesn't exist.
+          if(!gameOver){
+            document.getElementsByClassName("answerField")[question_number-1].focus();
+          }
+
         }
 
       }
@@ -230,9 +248,8 @@ function generateQuestion(){
   }
 
 }
-document.addEventListener("DOMContentLoaded", function() {
-  displayQuestion();
-});
+
+
 
 //Mocking on losing
 function showGifAndPlaySoundOnIncorrectAns() {
@@ -241,12 +258,12 @@ function showGifAndPlaySoundOnIncorrectAns() {
   gif_elem.id = "mockery_gif";
   gif_elem.src = "../Images/mocking_on_losing.gif";
   document.getElementById('gif_container').appendChild(gif_elem);
-  const soundEffect = document.getElementById('mockery_audio');
-
   // Display the GIF
   gif_elem.style.display = 'block';
 
+
   // Play the sound effect
+  const soundEffect = document.getElementById('mockery_audio');
   soundEffect.play().catch(error => {
     console.error('Error playing the sound:', error);
   });
@@ -285,3 +302,50 @@ function showGifAndPlaySoundOnCorrectAns() {
   }, 2000); // 3000 milliseconds = 3 seconds
 }
 
+function backButton(){
+  var url = "../level_selection_page/level_selection_page.html";
+  window.open(url, '_self');
+}
+
+function displayGameOver(){
+  document.getElementById("game_over_cover_screen").style.display = "block";
+  gameOverAudio();
+}
+
+function gameOverBackButton(){
+  document.getElementById("game_over_cover_screen").style.display = "none";
+}
+
+function gameOverRetryButton(){
+  gameOver = false;
+  lives = 3;
+  score = 0;
+  while(question_number != 0){
+    document.getElementsByClassName("questionAndAnswerContainer")[question_number-1].remove();
+    question_number--;
+  }
+  document.getElementById("game_over_cover_screen").style.display = "none";
+  document.getElementById("hearts").src = "../Images/3_hearts.png";
+  document.getElementById("scoreBoard").innerHTML = "Score: 0 / " + fullScore.toString();
+  question_number = 0;
+  displayQuestion();
+
+}
+
+function gameOverAudio(){
+  const soundEffect = document.getElementById('game_over_audio');
+  soundEffect.play().catch(error => {
+    console.error('Error playing the sound:', error);
+  });
+
+  // Remove the GIF and stop the sound after 3 seconds
+  setTimeout(() => {
+    soundEffect.pause();
+    soundEffect.currentTime = 0; // Reset the audio
+  }, 1500); // 3000 milliseconds = 3 seconds
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  displayQuestion();
+});
