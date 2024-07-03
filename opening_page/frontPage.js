@@ -37,3 +37,14 @@ function openLevelSelectionPage() {
     var url = "../level_selection_page/level_selection_page.html";
     window.open(url, '_self');
 }
+
+function displayInformation(){
+    document.getElementById("information").style.display = "block";
+    document.getElementById("information_banner").style.display = "block";
+    document.getElementById("close_banner_button").style.display = "block";
+}
+function closeInfoBanner(){
+    document.getElementById("information").style.display = "none";
+    document.getElementById("information_banner").style.display = "none";
+    document.getElementById("close_banner_button").style.display = "none";
+}

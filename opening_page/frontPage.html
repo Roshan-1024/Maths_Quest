@@ -4,19 +4,39 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="frontPage.css">
     <link rel="icon" type="image/x-icon" href="../Images/website_logo.jpeg">
-    <title>Quizzopia</title>
+    <title>Maths Quest</title>
   </head>
   <body>
-      <img src="../Images/information_icon.png" id="information" alt="information">
-      <img src="../Images/front_page_anwesha.jpeg" id="anweshaPhoto">
-      <div id="heading"> Quizzopia </div>
-      <div id="displayTime"></div>
+    
+    <img src="../Images/information_icon.png" id="information_icon" alt="information" onclick="displayInformation()">
+    <img src="../Images/front_page_anwesha.jpeg" id="anweshaPhoto">
+    <div id="heading"> Maths Quest </div>
+    <div id="displayTime"></div>
 
-      <div id="container">
-        <div class="frontPageList" onclick="openLevelSelectionPage()">New Game</div>
-        <div class="frontPageList">Continue</div>
-        <div class="frontPageList">Settings</div>
-      </div>
-      <script src="frontPage.js" charset="utf-8"></script>
+    <div id="container">
+      <div class="frontPageList" onclick="openLevelSelectionPage()">New Game</div>
+      <div class="frontPageList">Continue</div>
+      <div class="frontPageList">Settings</div>
+    </div>
+
+    <img src="../Images/information_banner.png" id="information_banner">
+    <div id="information">
+      <h1>Welcome to Maths Quest: Defeat the Quiz Bot!</h1>
+      <p>Get ready for an exciting journey into the world of numbers and puzzles with Math Quest!<br>
+        In this awesome game designed just for 4th graders like you, you become the hero who <br>
+        must solve math problems and beat the tricky Quiz Bot.</p>
+      <h2>What Makes Math Quest Awesome:</h2>
+      <ul>
+        <li><h3>Fun Learning:</h3> Solve math problems in a cool and interactive way!</li>
+        <li><h3>Meet the Quiz Bot:</h3> Watch out for the Quiz Bot who challenges you with questions!</li>
+        <li><h3>Different Levels:</h3> Explore chapters from your math book across multiple levels.</li>
+        <li><h3>Type in Your Answers:</h3> Use your typing skills to defeat the Quiz Bot by typing the correct answers fast!</li>
+      </ul>
+      <h3>Join the Adventure Today!</h3>
+      <p>Gather your friends or go solo on this epic math adventure. Can you outsmart the <br>
+        Quiz Bot and become the math champion? Let's find out – start your Math Quest now!</p>
+    </div>
+    <img src="../Images/close_button.png" onclick="closeInfoBanner()" id="close_banner_button">
+    <script src="frontPage.js" charset="utf-8"></script>
   </body>
 </html>

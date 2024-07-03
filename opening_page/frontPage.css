@@ -69,7 +69,7 @@ img#anweshaPhoto{
                 0 0 80px rgba(255, 182, 193, 0.2);
 }
 
-img#information{
+img#information_icon{
   width:80px;
   height: 80px;
   position: absolute;
@@ -77,7 +77,7 @@ img#information{
   top: 20px;
 }
 
-img#information:hover{
+img#information_icon:hover{
   cursor: pointer;
 }
 
@@ -86,4 +86,48 @@ div.frontPageList:nth-child(2):hover{
   color: white;
   background: rgba(0,0,0,0.6);
   border:3px solid rgba(0,0,0,0.6);
+}
+
+img#information_banner{
+  display: none;
+  width: 730px;
+  height: 500px;
+  position: absolute;
+  top: 13.5%;
+  left: 28%;
+}
+
+div#information{
+  display: none;
+  color: white;
+  background: rgba(0,0,0,0);
+  position: absolute;
+  top: 20%;
+  left:31.5%;
+  overflow: scroll;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 640px;
+  height: 380px;
+}
+
+div#information::-webkit-scrollbar {
+  display: none;
+}
+
+h1{
+  font-size: 29px;
+  margin: 0;
+}
+
+img#close_banner_button{
+  display: none;
+  position: absolute;
+  top: 14%;
+  left:72.7%;
+  width:40px;
+  height: 40px;
+}
+
+img#close_banner_button:hover{
+  cursor: pointer;
 }
